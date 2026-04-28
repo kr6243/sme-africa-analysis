@@ -58,4 +58,35 @@ for ind_label in indicators.values():
     plt.savefig(filename, dpi=150, bbox_inches='tight')
     plt.close()
     print(f"Saved {filename}")
-    
+
+# Financing gap bar chart
+GLOBAL_BENCHMARK = 130
+
+latest_credit = (
+    all_data[all_data['indicator'] == 'Private Credit (% of GDP)']
+    .sort_values('year', ascending=False)
+    .groupby('country')
+    .first()
+    .reset_index()
+)
+
+print(latest_credit[['country', 'year', 'value']])
+
+latest_credit['gap'] = GLOBAL_BENCHMARK - latest_credit['value']
+
+fig, ax = plt.subplots(figsize=(10, 6))
+bars = ax.bar(latest_credit['country'], latest_credit['gap'], color='steelblue')
+ax.set_title('SME Financing Gap by Country\n(Distance from Global Average Private Credit % of GDP)', 
+             fontsize=13, fontweight='bold')
+ax.set_xlabel('Country')
+ax.set_ylabel('Financing Gap (% of GDP)')
+ax.grid(True, alpha=0.3, axis='y')
+
+for bar, val in zip(bars, latest_credit['gap']):
+    ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 1, 
+            f'{val:.1f}%', ha='center', fontsize=11)
+
+plt.tight_layout()
+plt.savefig('financing_gap.png', dpi=150, bbox_inches='tight')
+plt.close()
+print("Saved financing_gap.png")
