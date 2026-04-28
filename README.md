@@ -8,7 +8,7 @@ I built this after working on investor relations for a blended finance fund depl
 
 ## What the Data Shows
 
-Financial inclusion has grown fast, but unevenly. Kenya has gone from 42% account ownership in 2011 to 90% in 2024, largely off the back of mobile money. Ethiopia and Nigeria are still well below 50%, pointing to deeper regulatory and infrastructure barriers.
+Financial inclusion has grown fast, but unevenly. Kenya has gone from 42% account ownership in 2011 to 90% in 2024, largely off the back of mobile money. Ethiopia remains well below 50%, while Nigeria has reached around 63% but still lags behind Kenya and Ghana, pointing to uneven progress across the region.
 
 The gender gap has not closed. Female account ownership has risen across all five markets but consistently sits below overall ownership, meaning the gains in financial inclusion have not been equally shared.
 
