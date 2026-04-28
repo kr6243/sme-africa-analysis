@@ -74,7 +74,7 @@ for ind_label in indicators.values():
     print(f"Saved {filename}")
 
 # Financing gap bar chart
-GLOBAL_BENCHMARK = 130
+GLOBAL_BENCHMARK = 50
 
 latest_credit = (
     all_data[all_data['indicator'] == 'Private Credit (% of GDP)']

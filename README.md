@@ -12,7 +12,7 @@ Financial inclusion has grown fast, but unevenly. Kenya has gone from 42% accoun
 
 The gender gap has not closed. Female account ownership has risen across all five markets but consistently sits below overall ownership, meaning the gains in financial inclusion have not been equally shared.
 
-Private credit tells the real story. Across these five countries, private credit as a share of GDP sits between 9% and 32%. The global average is around 130%. That gap of 98 to 121 percentage points is not a rounding error - it represents a structural failure of credit markets to reach businesses that need capital to grow. It is also exactly why blended finance exists.
+Private credit tells the real story. Across these five countries, private credit as a share of GDP sits between 9% and 32%. The global average is around 50%. That gap of 18 to 41 percentage points is not a rounding error - it represents a structural failure of credit markets to reach businesses that need capital to grow. It is also exactly why blended finance exists. Note: Ethiopia is excluded from the financing gap chart as the most recent World Bank private credit data available for Ethiopia is from 2008.
 
 ## Charts
 - [Account Ownership by Country](https://kr6243.github.io/sme-africa-analysis/Account_Ownership_.html)
