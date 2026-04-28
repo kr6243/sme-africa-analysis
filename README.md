@@ -1,39 +1,24 @@
 # SME Financing Gap in Sub-Saharan Africa
 
 ## Overview
-This project analyses financial access and SME financing trends across five key Sub-Saharan African markets — Kenya, Nigeria, Ghana, Ethiopia, and Rwanda — using World Bank data. It explores the structural funding gap that prevents small and medium enterprises in the region from accessing the capital they need to grow, the so-called "missing middle" that blended finance vehicles are working to address.
+This project looks at financial access and private credit trends across five Sub-Saharan African markets — Kenya, Nigeria, Ghana, Ethiopia, and Rwanda. The central question is simple: how large is the gap between what businesses in these countries can actually access and what a functioning credit market would provide? All data is pulled live from the World Bank API.
 
 ## Motivation
-This project grew out of my interest in emerging market finance and impact investing, specifically the structural barriers that prevent SMEs in Sub-Saharan Africa from accessing growth capital. Having worked on investor relations for a blended finance fund focused on the region, I wanted to better understand the broader financing landscape through data.
+I built this after working on investor relations for a blended finance fund deploying capital into water and sanitation SMEs across Sub-Saharan Africa. I kept coming across the concept of the "missing middle" — the idea that SMEs in the region are too large for microfinance but too risky for commercial banks, leaving them with almost no access to growth capital. I wanted to quantify that gap myself.
 
-## Data Source
-All data is pulled directly from the World Bank API — no manual downloads required. The script fetches live data on:
-- Account ownership (% of population ages 15+)
-- Female account ownership (% of population ages 15+)
-- Private credit (% of GDP)
+## What the Data Shows
 
-## Key Findings
+Financial inclusion has grown fast, but unevenly. Kenya has gone from 42% account ownership in 2011 to 90% in 2024, largely off the back of mobile money. Ethiopia and Nigeria are still well below 50%, pointing to deeper regulatory and infrastructure barriers.
 
-**Financial inclusion is growing but uneven**
-Account ownership across the five countries has risen significantly since 2011, led by Kenya (42% to 90%) driven largely by mobile money adoption. Ethiopia and Nigeria lag behind, pointing to regulatory and infrastructure barriers.
+The gender gap has not closed. Female account ownership has risen across all five markets but consistently sits below overall ownership, meaning the gains in financial inclusion have not been equally shared.
 
-**A persistent gender gap remains**
-Female account ownership consistently trails overall ownership across all five markets, highlighting that financial inclusion gains have not been equally distributed.
-
-**Private credit remains critically low**
-Private credit as a % of GDP — a standard measure of credit accessibility for businesses — sits between 9% and 32% across these markets, compared to a global average of around 130%. This gap of 98-121 percentage points represents the structural financing shortfall that makes commercial lending to SMEs in the region unviable without catalytic capital.
-
-**The case for blended finance**
-The data illustrates why traditional commercial lenders alone cannot close this gap. Blended finance structures — combining first-loss capital from development-oriented sources with senior capital from private investors — are essential to de-risk lending in these markets and unlock private capital at scale.
+Private credit tells the real story. Across these five countries, private credit as a share of GDP sits between 9% and 32%. The global average is around 130%. That gap of 98 to 121 percentage points is not a rounding error — it represents a structural failure of credit markets to reach businesses that need capital to grow. It is also exactly why blended finance exists.
 
 ## Charts
-- `Account_Ownership_.png` — Account ownership trends by country (2011-2024)
-- `Female_Account_Ownership_.png` — Female account ownership trends by country (2011-2024)
-- `Private_Credit_(%_of_GDP).png` — Private credit trends by country
-- `financing_gap.png` — Financing gap vs global average by country
+- `Account_Ownership_.html` — Account ownership trends by country (2011-2024)
+- `Female_Account_Ownership_.html` — Female account ownership trends by country (2011-2024)
+- `Private_Credit_(%_of_GDP).html` — Private credit trends by country
+- `financing_gap.html` — Financing gap vs global average by country
 
 ## Tech Stack
-- Python
-- Pandas
-- Matplotlib
-- World Bank API
+Python, Pandas, Plotly, World Bank API
