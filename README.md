@@ -17,7 +17,7 @@ Private credit tells the real story. Across these five countries, private credit
 ## Charts
 - [Account Ownership by Country](https://kr6243.github.io/sme-africa-analysis/Account_Ownership_.html)
 - [Female Account Ownership by Country](https://kr6243.github.io/sme-africa-analysis/Female_Account_Ownership_.html)
-- [Private Credit by Country](https://kr6243.github.io/sme-africa-analysis/Private_Credit_(%_of_GDP).html)
+- [Private Credit by Country](https://kr6243.github.io/sme-africa-analysis/private_credit.html)
 - [SME Financing Gap by Country](https://kr6243.github.io/sme-africa-analysis/financing_gap.html)
 
 ## Tech Stack
