@@ -84,6 +84,9 @@ latest_credit = (
     .reset_index()
 )
 
+# Remove Ethiopia - most recent World Bank data is 2008, too old for a current comparison
+latest_credit = latest_credit[latest_credit['country'] != 'Ethiopia']
+
 latest_credit['gap'] = GLOBAL_BENCHMARK - latest_credit['value']
 latest_credit = latest_credit.sort_values('gap', ascending=False)
 
