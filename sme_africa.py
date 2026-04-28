@@ -1,6 +1,8 @@
 import requests
 import pandas as pd
 import matplotlib.pyplot as plt
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 
 # Countries to analyse
 countries = {
@@ -41,22 +43,34 @@ all_data = pd.concat([
 print(all_data)
 print("\nData pulled successfully!")
 
-# Plot country comparisons for each indicator
+colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd']
+
+# Country comparison charts for each indicator
 for ind_label in indicators.values():
-    fig, ax = plt.subplots(figsize=(12, 6))
+    fig = go.Figure()
     subset = all_data[all_data['indicator'] == ind_label]
-    for country in countries.values():
+    for i, country in enumerate(countries.values()):
         country_data = subset[subset['country'] == country].sort_values('year')
-        ax.plot(country_data['year'], country_data['value'], marker='o', label=country, linewidth=2)
-    ax.set_title(f'{ind_label} by Country', fontsize=14, fontweight='bold')
-    ax.set_xlabel('Year')
-    ax.set_ylabel(ind_label)
-    ax.legend()
-    ax.grid(True, alpha=0.3)
-    plt.tight_layout()
-    filename = ind_label.replace(' ', '_').replace('(%)', '').replace('/', '').strip() + '.png'
-    plt.savefig(filename, dpi=150, bbox_inches='tight')
-    plt.close()
+        fig.add_trace(go.Scatter(
+            x=country_data['year'],
+            y=country_data['value'],
+            name=country,
+            mode='lines+markers',
+            line=dict(width=2.5, color=colors[i]),
+            marker=dict(size=7)
+        ))
+    fig.update_layout(
+        title=dict(text=f'{ind_label} by Country', font=dict(size=18)),
+        xaxis_title='Year',
+        yaxis_title=ind_label,
+        template='plotly_white',
+        legend=dict(orientation='h', yanchor='bottom', y=1.02, xanchor='right', x=1),
+        hovermode='x unified',
+        width=1000,
+        height=550
+    )
+    filename = ind_label.replace(' ', '_').replace('(%)', '').replace('/', '').strip() + '.html'
+    fig.write_html(filename)
     print(f"Saved {filename}")
 
 # Financing gap bar chart
@@ -70,23 +84,25 @@ latest_credit = (
     .reset_index()
 )
 
-print(latest_credit[['country', 'year', 'value']])
-
 latest_credit['gap'] = GLOBAL_BENCHMARK - latest_credit['value']
+latest_credit = latest_credit.sort_values('gap', ascending=False)
 
-fig, ax = plt.subplots(figsize=(10, 6))
-bars = ax.bar(latest_credit['country'], latest_credit['gap'], color='steelblue')
-ax.set_title('SME Financing Gap by Country\n(Distance from Global Average Private Credit % of GDP)', 
-             fontsize=13, fontweight='bold')
-ax.set_xlabel('Country')
-ax.set_ylabel('Financing Gap (% of GDP)')
-ax.grid(True, alpha=0.3, axis='y')
+fig = go.Figure(go.Bar(
+    x=latest_credit['country'],
+    y=latest_credit['gap'],
+    marker_color=colors,
+    text=latest_credit['gap'].apply(lambda x: f'{x:.1f}%'),
+    textposition='outside'
+))
 
-for bar, val in zip(bars, latest_credit['gap']):
-    ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 1, 
-            f'{val:.1f}%', ha='center', fontsize=11)
+fig.update_layout(
+    title=dict(text='SME Financing Gap by Country<br><sup>Distance from Global Average Private Credit (% of GDP)</sup>', font=dict(size=18)),
+    xaxis_title='Country',
+    yaxis_title='Financing Gap (% of GDP)',
+    template='plotly_white',
+    width=900,
+    height=550
+)
 
-plt.tight_layout()
-plt.savefig('financing_gap.png', dpi=150, bbox_inches='tight')
-plt.close()
-print("Saved financing_gap.png")
+fig.write_html('financing_gap.html')
+print("Saved financing_gap.html")
