@@ -1,53 +1,46 @@
-# SME Financing Gap in Sub-Saharan Africa
+# The SME Financing Gap in Sub-Saharan Africa
 
-## Overview
-This project looks at financial access and private credit trends across five Sub-Saharan African markets - Kenya, Nigeria, Ghana, Ethiopia, and Rwanda. The central question is simple: how large is the gap between what businesses in these countries can actually access and what a functioning credit market would provide? All data is pulled live from the World Bank API.
+## What This Project Is
 
-## Motivation
-I built this after working on investor relations for a blended finance fund deploying capital into water and sanitation SMEs across Sub-Saharan Africa. I kept coming across the concept of the "missing middle" - the idea that SMEs in the region are too large for microfinance but too risky for commercial banks, leaving them with almost no access to growth capital. I wanted to quantify that gap myself.
+Sub-Saharan Africa has a structural problem with credit. Across the region, private credit as a share of GDP sits well below global averages, leaving small and medium businesses systematically underfunded. The "missing middle" — companies too large for microfinance but too risky for commercial banks — is one of the largest unaddressed financing gaps in the global economy, and it is the reason structures like blended finance exist.
 
-## What the Data Shows
+This project quantifies the scale of that gap, calculates what closing it would mean in dollar terms, and tests econometrically whether private credit deepening has historically translated into faster growth across the region. All data is pulled live from the World Bank Open Data API.
 
-Financial inclusion has grown fast, but unevenly. Kenya has gone from 42% account ownership in 2011 to 90% in 2024, largely off the back of mobile money. Ethiopia remains well below 50%, while Nigeria has reached around 63% but still lags behind Kenya and Ghana, pointing to uneven progress across the region.
+## Why I Built It
 
-The gender gap has not closed. Female account ownership has risen across all five markets but consistently sits below overall ownership, meaning the gains in financial inclusion have not been equally shared.
+I worked at Water Unite, a blended finance fund investing in water and sanitation SMEs across Sub-Saharan Africa, and kept hearing about the "missing middle" as a structural barrier. I wanted to see the numbers myself rather than take them on trust, and to understand whether the case for closing the gap holds up under proper empirical scrutiny.
 
-Private credit tells the real story. Across these five countries, private credit as a share of GDP sits between 9% and 32%. The global average across all countries is around 50% of GDP - meaning that in a typical economy, private sector lending is roughly half the size of the entire economy. In Kenya, the most financially developed market in this group, it sits at 32%. In Ghana and Nigeria it is closer to 10%. That gap of 18 to 41 percentage points is not a rounding error - it represents a structural failure of credit markets to reach businesses that need capital to grow, and it is exactly why blended finance structures exist. Note: Ethiopia is excluded from the financing gap chart as the most recent World Bank private credit data available is from 2008. Account ownership data for Rwanda is from 2017, the most recent available in the World Bank Findex for that country.
+## Interactive Charts
 
-## Charts
 - [Account Ownership by Country](https://kr6243.github.io/sme-africa-analysis/Account_Ownership_.html)
 - [Female Account Ownership by Country](https://kr6243.github.io/sme-africa-analysis/Female_Account_Ownership_.html)
 - [Private Credit by Country](https://kr6243.github.io/sme-africa-analysis/private_credit.html)
 - [SME Financing Gap by Country](https://kr6243.github.io/sme-africa-analysis/financing_gap.html)
 
-## Methodology and Limitations
+## Key Findings
 
-The data comes from the World Bank Open Data API, pulled live every time the script runs. Three indicators are used:
+**The gap is large.** Across Kenya, Nigeria, Ghana, and Rwanda, private credit as a share of GDP sits between 9% and 32%. The global average is around 50%. Closing that gap to the global benchmark would require an additional $200 billion in private credit across these four markets alone.
 
-- Account ownership at a financial institution or mobile money provider (% of population aged 15+), from the Global Findex database
-- Female account ownership, from the same source
-- Domestic credit to private sector by banks (% of GDP), from IMF International Financial Statistics
+**Financial inclusion has improved, but unevenly.** Account ownership in Kenya has grown from 42% in 2011 to 90% in 2024, driven largely by mobile money. Ghana and Nigeria have also progressed substantially. Ethiopia remains well below the regional average, and the gender gap persists across every country in the sample.
 
-The 50% benchmark in the financing gap chart is the World Bank's global average for private credit to GDP across all income levels.
+**The relationship between credit and growth is more nuanced than headlines suggest.** A two-way fixed effects panel regression across 40 Sub-Saharan African countries over six decades finds no statistically significant link between lagged private credit and subsequent GDP growth, once inflation, trade openness, and government spending are controlled for. The result holds across subsamples and a non-linear specification. Growth in the region has been shaped more by macroeconomic stability and openness than by credit access alone.
 
-A few things worth flagging on the data itself. The Findex survey only runs every three years, so the account ownership trend lines connect points from 2011, 2014, 2017, 2021 and 2024. Years in between are interpolated rather than measured. Rwanda's most recent figure is from 2017 because that's the latest available in the database. Ethiopia is excluded from the financing gap chart entirely because the most recent private credit data the World Bank has for the country is from 2008, which is too far out of date to be a fair current comparison. Private credit figures themselves come with a one to two year lag depending on the country, with Nigeria's most recent from 2022, Kenya from 2023, and Ghana and Rwanda from 2024.
+This does not mean the financing gap is unimportant. It means the channel from credit to aggregate growth is conditional on the broader environment, and any financing intervention is operating in a system where other factors matter at least as much.
 
-The 50% benchmark is a global average and hides a lot of variation. Middle income countries typically sit closer to 60-80%, and high income countries average around 130%, so the gap looks different depending on which comparison you're making.
+## Methodology
 
-## What Closing the Gap Would Mean
+Data is pulled live from the World Bank Open Data API across five indicators: account ownership, female account ownership, private credit to GDP, GDP growth, inflation, trade openness, and government consumption. The country-level analysis covers Kenya, Nigeria, Ghana, Ethiopia, and Rwanda. The panel regression expands to all 40 Sub-Saharan African countries with complete data.
 
-The financing gap is easy to dismiss as abstract until you put a dollar figure on it. Below is a rough estimate of how much additional private credit each market would need to reach the 50% global benchmark, calculated as the percentage point gap multiplied by each country's most recent GDP.
+The regression uses a two-way fixed effects panel estimator with standard errors clustered at the country level. Private credit is lagged by one year to address simultaneity. Robustness checks include subsample analysis (post-2000, excluding the 2008-2009 GFC) and a quadratic specification to test for non-linearities.
 
-| Country | Current Private Credit (% of GDP) | Gap to 50% | Approx. GDP (USD bn) | Additional Credit Needed (USD bn) |
-|---------|----------------------------------:|-----------:|---------------------:|----------------------------------:|
-| Kenya   | 31.8% | 18.2 pp | 113 | 21 |
-| Rwanda  | 22.6% | 27.4 pp | 14  | 4  |
-| Nigeria | 9.6%  | 40.4 pp | 363 | 147 |
-| Ghana   | 9.0%  | 41.0 pp | 76  | 31 |
+## Limitations
 
-For Nigeria alone, the gap represents roughly $147 billion in additional credit that businesses cannot currently access. Across these four markets, the gap totals over $200 billion. That figure isn't a forecast, it's a rough scale of the problem, and it's the kind of number that helps explain why commercial banks alone cannot close it and why structures like blended finance exist.
-
-GDP figures are approximate, drawn from World Bank latest available data. These are illustrative rather than precise forecasts.
+The Findex survey runs every three years, so account ownership trend lines connect points from 2011, 2014, 2017, 2021 and 2024 with interpolation in between. Rwanda's most recent account ownership figure is from 2017, and Ethiopia is excluded from the financing gap chart because its most recent private credit data is from 2008. Private credit figures themselves come with a one to two year reporting lag. The 50% benchmark is a global average; middle-income countries typically sit closer to 60-80% and high-income closer to 130%, so comparisons vary depending on the reference group used.
 
 ## Tech Stack
-Python, Pandas, Plotly, World Bank API
+
+Python, pandas, statsmodels, linearmodels, Plotly, World Bank Open Data API.
+
+## Repository
+
+The full analysis lives in `sme_africa_analysis.ipynb`. Live charts are deployed via GitHub Pages.
